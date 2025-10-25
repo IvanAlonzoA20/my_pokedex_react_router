@@ -4,21 +4,21 @@ import { usePokemon } from "../hooks/usePokemon";
 
 export function PokeItem(props) {
     const { urlPokemon, checkPokemon, pokemonSelected } = props;
-    const { pokemon, loading, getPokemonByUrl } = usePokemon(urlPokemon);
+    const { pokemon, loading, getPokemonByUrl } = usePokemon();
 
-    useEffect(() => getPokemonByUrl(urlPokemon), [urlPokemon]);
+    useEffect(() => {
+        (async () => getPokemonByUrl(urlPokemon))();
+    }, [urlPokemon]);
 
     const setPokemon = () => {
         checkPokemon(pokemon);
     };
-
 
     if (loading) {
         return <div className="flex justify-center items-center h-20">
             <AiOutlineLoading3Quarters className="animate-spin" />
         </div>;
     }
-
 
     return (
         <div

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getPokemonByUrlApi } from "../routes/api/pokemon";
+import { getPokemonsByUrlApi } from "../routes/api/pokemon";
 
 export function usePokemon(url) {
     const [pokemon, setPokemon] = useState(null);
@@ -8,7 +8,7 @@ export function usePokemon(url) {
     const getPokemonByUrl = async (url) => {
         try {
             setLoading(true);
-            const data = await getPokemonByUrlApi(url);
+            const data = await getPokemonsByUrlApi(url);
             setPokemon(data);
             setLoading(false);
             return data;

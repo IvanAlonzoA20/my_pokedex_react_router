@@ -27,7 +27,7 @@ export async function getPokemonApi(name) {
     }
 }
 
-export async function getPokemonByUrlApi(url) {
+export async function getPokemonsByUrlApi(url) {
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -35,5 +35,18 @@ export async function getPokemonByUrlApi(url) {
     } catch (error) {
         console.error("Error fetching pokemon by URL:", error);
         throw new Response("Failed to fetch pokemon by URL", { status: 500 });
+    }
+}
+
+
+export async function getPokemonsAllApi() {
+    const url = `${env.API_BASE_URL}/pokemon?limit=100000`;
+
+    try {
+        const response = await fetch(url);
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        throw error;
     }
 }
